@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { DialogTrigger } from '@radix-ui/react-dialog';
+import Link from 'next/link';
+import { ReactNode, useEffect, useState } from 'react'
 
 type Book = {
     id: number;
@@ -10,6 +14,14 @@ type Book = {
 type Data = {
     data: Book[];
 };
+
+type ModalType = {
+    children?: ReactNode
+    isOpen: Boolean
+    toggle: () => void
+}
+
+
 
 export default function Book() {
     const [data, setData] = useState<Book[]>()
@@ -29,7 +41,27 @@ export default function Book() {
     return (
         <div>
             {data.map((book) => (
-                <p key={book.id}>{book.name}</p>
+                <Dialog key={book.id}>
+                    <DialogTrigger asChild>
+                        <Button
+                            style={{ margin: '3px', textAlign: 'left' }}
+                            variant="outline">
+                            {book.name}
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>{book.name}</DialogTitle>
+                            <DialogDescription>
+                                {Array.from({ length: book.chapter }, (_, index) => (
+                                    <Button
+                                        style={{ margin: '2px', width: '10%' }}
+                                        key={index}>{index + 1}</Button>
+                                ))}
+                            </DialogDescription>
+                        </DialogHeader>
+                    </DialogContent>
+                </Dialog>
             ))}
         </div>
     )
