@@ -12,7 +12,7 @@ export default function Home() {
     const abbr = router.get("book") as string
     const num = parseInt(router.get("number") as string);
 
-    const { loading, data } = usePassage(abbr, num)
+    const { loading, data } = usePassage(abbr, num.toString())
     if (loading) return <Skeleton className="w-[100%] h-[20px] rounded-full" />
     if (!data || !data.bible) return <p>Data is undefined or null.</p>
     return (

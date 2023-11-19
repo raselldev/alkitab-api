@@ -27,7 +27,7 @@ type Verse = {
     text: string;
 };
 
-export default function usePassage(abbreviation: string, number: number) {
+export default function usePassage(abbreviation: string, number: string) {
     const [data, setData] = useState<Passage | null>(null);
     const [loading, setLoading] = useState(true);
 
