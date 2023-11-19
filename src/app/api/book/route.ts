@@ -1,3 +1,8 @@
+/**
+ * The above function is an asynchronous function that returns a list of books of the Bible with their
+ * abbreviations, names, and chapter counts.
+ * @returns a Response object with the JSON stringified version of the "result" object.
+ */
 export async function GET() {
   let result = {
     data: [

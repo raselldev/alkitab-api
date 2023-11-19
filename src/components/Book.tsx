@@ -1,42 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import useBook from '@/hooks/useBook';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import Link from 'next/link';
-import { ReactNode, useEffect, useState } from 'react'
-
-type Book = {
-    id: number;
-    abbr: string;
-    name: string;
-    chapter: number;
-};
-
-type Data = {
-    data: Book[];
-};
-
-type ModalType = {
-    children?: ReactNode
-    isOpen: Boolean
-    toggle: () => void
-}
-
+import { Skeleton } from '@/components/ui/skeleton';
 
 
 export default function Book() {
-    const [data, setData] = useState<Book[]>()
-    const [isLoading, setLoading] = useState(true)
-
-    useEffect(() => {
-        fetch('pages/api/book')
-            .then((res) => res.json())
-            .then((data: Data) => {
-                setData(data.data)
-                setLoading(false)
-            })
-    }, [])
-
-    if (isLoading) return <p>Loading...</p>
+    const { loading, data } = useBook()
+    if (loading) return <Skeleton className="w-[100%] h-[20px] rounded-full" />
     if (!data) return <p>Please Try Again</p>
     return (
         <div>
@@ -54,9 +26,12 @@ export default function Book() {
                             <DialogTitle>{book.name}</DialogTitle>
                             <DialogDescription>
                                 {Array.from({ length: book.chapter }, (_, index) => (
-                                    <Button
-                                        style={{ margin: '2px', width: '10%' }}
-                                        key={index}>{index + 1}</Button>
+                                    <Link key={index} href={{ pathname: '/passage', query: { book: book.abbr, number: index + 1 } }}>
+                                        <Button
+                                            style={{ margin: '2px', width: '10%' }}
+                                        >{index + 1}
+                                        </Button>
+                                    </Link>
                                 ))}
                             </DialogDescription>
                         </DialogHeader>
