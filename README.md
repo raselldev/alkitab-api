@@ -1,4 +1,5 @@
 
+
 ![alkitab-api](https://socialify.git.ci/raselldev/alkitab-api/image?description=1&font=Jost&forks=1&issues=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2Fraselldev%2Falkitab-api%2Fccc305189347115b96d92f98f3cd9e9cf82c9f27%2Fpublic%2Flogo.svg&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto)
 ## Description
 
@@ -21,13 +22,31 @@ This is a simple Bible API that provides access to various Bible passages and ve
 
 ## Getting Started
 
-### Installation
-
 1. Clone the repository:
 
    ```sh
    git clone https://github.com/raselldev/alkitab-api.git
+   
+1. Install some package:
+
+   ```sh
+   npm install
+1. Run:
+
+   ```sh
+   npm run dev
+
+## Endpoints
+| API | ENDPOINT |
+|--|--|
+| Get Book Data | api/book |
+| Get Passage | api/passage?passage={passage}&num={chapter} |
+
+   
 
 ## Contribution
 
 Interested in enhancing this project? You can actively contribute to it. I am fully receptive to any contributions that can help improve the project.
+
+## About the Data
+All bible data is from SABDA.ORG
