@@ -43,12 +43,7 @@ export default function Home() {
       <div className="pt-5">
         {num > 1 ? (
           <>
-            <Button
-              variant="outline"
-              size="icon"
-              className="mr-2"
-              onClick={onNext}
-            >
+            <Button variant="outline" size="icon" className="mr-2">
               <ChevronLeft />
             </Button>
             <Button variant="outline" size="icon">
