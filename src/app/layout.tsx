@@ -3,12 +3,6 @@ import { Roboto } from "next/font/google"
 import classNames from 'classnames'
 import './globals.css'
 
-export const fontSans = Roboto({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: '400'
-})
-
 
 export const metadata: Metadata = {
   title: 'Alkitab API',
@@ -29,7 +23,6 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen font-sans antialiased p-8",
-          fontSans.variable
         )}>
         {children}
       </body>
