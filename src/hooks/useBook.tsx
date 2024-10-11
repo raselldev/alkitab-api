@@ -6,7 +6,7 @@
 import { useEffect, useState } from "react";
 
 export default function useBook() {
-    const [data, setData] = useState<Book[]>()
+    const [data, setData] = useState<BookType[]>()
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function useBook() {
     return { loading, data }
 }
 
-type Book = {
+export type BookType = {
     id: number;
     abbr: string;
     name: string;
@@ -29,5 +29,5 @@ type Book = {
 };
 
 type Data = {
-    data: Book[];
+    data: BookType[];
 };

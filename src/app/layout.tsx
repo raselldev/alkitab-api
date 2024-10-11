@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Roboto } from "next/font/google"
 import classNames from 'classnames'
 import './globals.css'
-import { ThemeProvider } from '../components/theme-provider'
 
 export const fontSans = Roboto({
   subsets: ["latin"],
@@ -32,13 +31,7 @@ export default function RootLayout({
           "min-h-screen font-sans antialiased p-8",
           fontSans.variable
         )}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   )

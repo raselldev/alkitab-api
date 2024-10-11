@@ -1,11 +1,10 @@
 "use client"
 
 import Navbar from "@/components/Navbar"
-import { Skeleton } from "@/components/ui/skeleton"
 import usePassage from "@/hooks/usePassage"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { Button } from "@/components/ui/button"
 
 export default function Home() {
   const router = useSearchParams()
@@ -13,7 +12,7 @@ export default function Home() {
   const num = parseInt(router.get("number") as string)
 
   const { loading, data } = usePassage(abbr, num.toString())
-  if (loading) return <Skeleton className="w-[100%] h-[20px] rounded-full" />
+  if (loading) return <span className="loading loading-spinner loading-lg"></span>
   if (!data || !data.bible) return <p>Data is undefined or null.</p>
 
   return (
@@ -43,17 +42,30 @@ export default function Home() {
       <div className="pt-5">
         {num > 1 ? (
           <>
-            <Button variant="outline" size="icon" className="mr-2">
-              <ChevronLeft />
-            </Button>
-            <Button variant="outline" size="icon">
-              <ChevronRight />
-            </Button>
+            <Link
+              href={{ pathname: '/passage', query: { book: abbr, number: num - 1 } }}
+            >
+              <button>
+                <ChevronLeft />
+              </button>
+            </Link>
+
+            <Link
+              href={{ pathname: '/passage', query: { book: abbr, number: num + 1 } }}
+            >
+              <button>
+                <ChevronRight />
+              </button>
+            </Link>
           </>
         ) : (
-          <Button variant="outline" size="icon">
-            <ChevronRight />
-          </Button>
+          <Link
+            href={{ pathname: '/passage', query: { book: abbr, number: num + 1 } }}
+          >
+            <button>
+              <ChevronRight />
+            </button>
+          </Link>
         )}
       </div>
     </>
