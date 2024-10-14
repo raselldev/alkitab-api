@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Roboto } from "next/font/google"
 import classNames from 'classnames'
 import './globals.css'
+import { Suspense } from 'react'
 
 
 export const metadata: Metadata = {
@@ -24,7 +25,10 @@ export default function RootLayout({
         className={cn(
           "min-h-screen font-sans antialiased p-8",
         )}>
-        {children}
+        <Suspense>
+          {children}
+        </Suspense>
+
       </body>
     </html>
   )
